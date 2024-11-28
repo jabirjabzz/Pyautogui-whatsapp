@@ -1,9 +1,12 @@
-import cv2
+import pyautogui as pg
 
-file_path = r"C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110644.png"
-image = cv2.imread(file_path)
-if image is None:
-    print("Failed to load the image. Check the file path or format.")
-else:
-    print("Image loaded successfully!")
+shut_down_image = r"C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110644.png"
 
+try:
+    result = pg.locateOnScreen(shut_down_image, confidence=0.8)
+    if result:
+        print("Image found:", result)
+    else:
+        print("Image not found.")
+except Exception as e:
+    print("Error:", e)
