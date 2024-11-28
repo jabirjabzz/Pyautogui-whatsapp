@@ -1,5 +1,6 @@
 import pyautogui as pg
 import time
+import os
 import cv2
 
 def open_whatsapp():
@@ -45,12 +46,22 @@ def wait_for_image(image_path, timeout=300):
 def handle_response():
     # Wait for either "Shut down" or "Save" image
     print("Waiting for response...")
+    
+    # Verify file exists before attempting to use it
+    if not os.path.exists(shut_down_image):
+        print(f"Error: Shut down image file not found at {shut_down_image}")
+        return
+    
+    if not os.path.exists(save_image):
+        print(f"Error: Save image file not found at {save_image}")
+        return
     import os
+
     shut_down_image = os.path.join(
-    "C:", "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
+        "C:", os.sep, "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
     )
     save_image = os.path.join(
-    "C:", "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110415.png"
+    "C:", os.sep, "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110415.png"
     )
     while True:
         print(f"Looking for: {shut_down_image}")  # Debug: Print the path of the image
