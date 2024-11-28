@@ -44,10 +44,11 @@ def wait_for_image(image_path, timeout=300):
 def handle_response():
     # Wait for either "Shut down" or "Save" image
     print("Waiting for response...")
-    shut_down_image = 'shut_down_image.png'  # Replace with the actual image path for "Shut down"
-    save_image = 'save_image.png'  # Replace with the actual image path for "Save"
+    shut_down_image = "C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110644.png"  # Replace with the actual image path for "Shut down"
+    save_image = "C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110415.png"  # Replace with the actual image path for "Save"
 
     while True:
+        print(f"Looking for: {shut_down_image}")  # Debug: Print the path of the image
         if pg.locateOnScreen(shut_down_image, confidence=0.8):
             print("Detected 'Shut down' response.")
             # Sub-steps for "Shut down"
@@ -57,7 +58,8 @@ def handle_response():
             time.sleep(1)
             pg.hotkey('win', 'r')  # Open Run dialog
             break
-        elif pg.locateOnScreen(save_image, confidence=0.8):
+        print(f"Looking for: {save_image}")  # Debug: Print the path of the image
+        if pg.locateOnScreen(save_image, confidence=0.8):
             print("Detected 'Save' response.")
             # Sub-steps for "Save"
             perform_main_steps()
