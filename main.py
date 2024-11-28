@@ -1,6 +1,6 @@
 import pyautogui as pg
 import time
-import os
+import cv2
 
 def open_whatsapp():
     # Step 1: Open WhatsApp from the taskbar search
@@ -45,6 +45,7 @@ def wait_for_image(image_path, timeout=300):
 def handle_response():
     # Wait for either "Shut down" or "Save" image
     print("Waiting for response...")
+    import os
     shut_down_image = os.path.join(
     "C:", "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
     )
