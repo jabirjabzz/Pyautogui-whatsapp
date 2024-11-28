@@ -1,5 +1,6 @@
 import pyautogui as pg
 import time
+import os
 
 def open_whatsapp():
     # Step 1: Open WhatsApp from the taskbar search
@@ -44,9 +45,12 @@ def wait_for_image(image_path, timeout=300):
 def handle_response():
     # Wait for either "Shut down" or "Save" image
     print("Waiting for response...")
-    shut_down_image = "C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110644.png"  # Replace with the actual image path for "Shut down"
-    save_image = "C:\Users\Administrator\Documents\GitHub\Pyautogui\images\Screenshot 2024-11-28 110415.png"  # Replace with the actual image path for "Save"
-
+    shut_down_image = os.path.join(
+    "C:", "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
+    )
+    save_image = os.path.join(
+    "C:", "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110415.png"
+    )
     while True:
         print(f"Looking for: {shut_down_image}")  # Debug: Print the path of the image
         if pg.locateOnScreen(shut_down_image, confidence=0.8):
