@@ -40,6 +40,7 @@ def perform_main_steps():
         sys.exit(1)
 
 def find_image(image_path, confidence_range=(0.3, 0.8)):
+    time.sleep(10)
     try:
         # Read the image
         template = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
@@ -67,6 +68,16 @@ def find_image(image_path, confidence_range=(0.3, 0.8)):
         return False
 
 def handle_response(timeout=300):
+    def click_image(location):
+    if location:
+        # Get the center of the image
+        x, y = pg.center(location)
+        # Click the center
+        pg.click(x, y)
+        print(f"Clicked on image at {x}, {y}")
+    else:
+        print("Image not found. Running alternative code...")
+        
     shut_down_image = os.path.join(
         "C:", os.sep, "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
     )
