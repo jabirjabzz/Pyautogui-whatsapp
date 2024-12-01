@@ -66,6 +66,18 @@ def find_image(image_path, confidence_threshold=0.75):
     except Exception as e:
         print(f"Error finding image: {e}")
         return False
+def type_character_by_character(text, delay=0.1):
+    """
+    Types a given text character by character with a delay.
+
+    Args:
+        text (str): The text to be typed.
+        delay (float): Delay between typing each character (in seconds).
+    """
+    for char in text:
+        pg.typewrite(char)
+        time.sleep(delay)  # Add a delay between typing each character
+    print("Finished typing!")
 
 def handle_response(timeout=300):
     # def click_image(location):
@@ -94,7 +106,7 @@ def handle_response(timeout=300):
                 print("Detected 'Shut down' response.")
                 open_whatsapp()
                 time.sleep(2)
-                pg.typewrite('shutting down')
+                type_character_by_character("shutting down..", delay=0.2)
                 time.sleep(2)
                 pg.press('enter')
                 time.sleep(1)
@@ -105,7 +117,7 @@ def handle_response(timeout=300):
                 print("Detected 'Save' response.")
                 open_whatsapp()
                 time.sleep(2)
-                pg.typewrite('Saving')
+                type_character_by_character("Saving..", delay=0.2)
                 time.sleep(2)
                 pg.press('enter')
                 return
