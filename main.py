@@ -39,7 +39,7 @@ def perform_main_steps():
         print(f"Error in main steps: {e}")
         sys.exit(1)
 
-def find_image(image_path, confidence_threshold=0.8):
+def find_image(image_path, confidence_threshold=0.75):
     time.sleep(10)
     try:
         # Read the image
@@ -93,7 +93,9 @@ def handle_response(timeout=300):
             if find_image(shut_down_image):
                 print("Detected 'Shut down' response.")
                 open_whatsapp()
+                time.sleep(2)
                 pg.typewrite('shutting down')
+                time.sleep(2)
                 pg.press('enter')
                 time.sleep(1)
                 pg.hotkey('win', 'r')
@@ -102,7 +104,9 @@ def handle_response(timeout=300):
             if find_image(save_image):
                 print("Detected 'Save' response.")
                 open_whatsapp()
+                time.sleep(2)
                 pg.typewrite('Saving')
+                time.sleep(2)
                 pg.press('enter')
                 return
 
