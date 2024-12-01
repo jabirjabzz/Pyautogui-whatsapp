@@ -34,12 +34,12 @@ def perform_main_steps():
             pg.press('tab')
             time.sleep(0.2)
         pg.press('enter')  
-        time.sleep(5)  
+        time.sleep(30)  
     except Exception as e:
         print(f"Error in main steps: {e}")
         sys.exit(1)
 
-def find_image(image_path, confidence_range=(0.3, 0.8)):
+def find_image(image_path, confidence_threshold=0.75):
     time.sleep(10)
     try:
         # Read the image
@@ -61,22 +61,20 @@ def find_image(image_path, confidence_range=(0.3, 0.8)):
         print(f"Image match confidence: {max_val}")
         
         # Check if confidence is within the specified range
-        return confidence_range[0] <= max_val <= confidence_range[1]
+        return max_val >= confidence_threshold
     
     except Exception as e:
         print(f"Error finding image: {e}")
         return False
 
 def handle_response(timeout=300):
-    def click_image(location):
-    if location:
-        # Get the center of the image
-        x, y = pg.center(location)
-        # Click the center
-        pg.click(x, y)
-        print(f"Clicked on image at {x}, {y}")
-    else:
-        print("Image not found. Running alternative code...")
+    # def click_image(location):
+    #     # Get the center of the image
+    #     x, y = pg.center(location)
+    #     # Click the center
+    #     pg.click(x, y)
+    #     print(f"Clicked on image at {x}, {y}")
+    
         
     shut_down_image = os.path.join(
         "C:", os.sep, "Users", "Administrator", "Documents", "GitHub", "Pyautogui", "images", "Screenshot 2024-11-28 110644.png"
@@ -94,8 +92,10 @@ def handle_response(timeout=300):
         try:
             if find_image(shut_down_image):
                 print("Detected 'Shut down' response.")
-                perform_main_steps()
+                open_whatsapp()
+                time.sleep(2)
                 pg.typewrite('shutting down')
+                time.sleep(2)
                 pg.press('enter')
                 time.sleep(1)
                 pg.hotkey('win', 'r')
@@ -103,8 +103,10 @@ def handle_response(timeout=300):
 
             if find_image(save_image):
                 print("Detected 'Save' response.")
-                perform_main_steps()
+                open_whatsapp()
+                time.sleep(2)
                 pg.typewrite('Saving')
+                time.sleep(2)
                 pg.press('enter')
                 return
 
@@ -115,7 +117,8 @@ def handle_response(timeout=300):
 
     print("Timeout reached or unexpected error.")
     sys.exit(1)
-
+# location = pg.locateOnScreen(image_path, confidence=confidence_level)
+# image_location = find_image(image_path, confidence)
 def main():
     open_whatsapp()
     perform_main_steps()
