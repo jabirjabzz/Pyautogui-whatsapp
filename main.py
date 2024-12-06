@@ -4,7 +4,45 @@ import time
 import sys
 import cv2
 import numpy as np
+from pywinauto import Application, keyboard
+import time
 
+# Path to VS Code executable
+vscode_path = r"C:\Users\<YourUsername>\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+
+def automate_vscode_commands():
+    # Step 1: Launch Visual Studio Code
+    app = Application(backend="uia").start(vscode_path)
+    
+    # Wait for VS Code to load
+    time.sleep(5)  # Adjust based on loading time
+
+    # Step 2: Set focus to the VS Code window
+    vscode_window = app.window(title_re=".*Visual Studio Code.*")
+    vscode_window.set_focus()
+    
+    # Step 3: Open a new terminal using Ctrl+` shortcut
+    keyboard.send_keys("^`")  # Ctrl + ` to open terminal
+    time.sleep(2)  # Allow terminal to open
+
+    # Step 4: Type and execute the commands in the terminal
+    commands = [
+        "git add .",
+        "git add -u",
+        'git commit -m "save and continue"',
+        "git checkout main",
+        "git push origin main",
+        "scrapy crawl malayalam_spider"
+    ]
+    
+    for cmd in commands:
+        keyboard.send_keys(cmd)
+        keyboard.send_keys("{ENTER}")  # Press Enter
+        time.sleep(2)  # Adjust delay if needed
+
+if __name__ == "__main__":
+    
+    
 def open_whatsapp():
     try:
         pg.hotkey('win', 's')  
@@ -34,7 +72,7 @@ def perform_main_steps():
             pg.press('tab')
             time.sleep(0.2)
         pg.press('enter')  
-        time.sleep(30)  
+        time.sleep(5)  
     except Exception as e:
         print(f"Error in main steps: {e}")
         sys.exit(1)
@@ -111,6 +149,7 @@ def handle_response(timeout=300):
                 pg.press('enter')
                 time.sleep(1)
                 pg.hotkey('win', 'r')
+            #   pg.press('enter')
                 return
 
             if find_image(save_image):
@@ -120,6 +159,7 @@ def handle_response(timeout=300):
                 type_character_by_character("Saving..", delay=0.2)
                 time.sleep(2)
                 pg.press('enter')
+                automate_vscode_commands()
                 return
 
             time.sleep(1)
