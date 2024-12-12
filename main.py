@@ -5,6 +5,7 @@ import sys
 import cv2
 import numpy as np
 from pywinauto import Application, keyboard
+import pywinauto
 import time
 
 # Path to VS Code executable
