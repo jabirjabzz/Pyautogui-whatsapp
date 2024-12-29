@@ -10,7 +10,7 @@ import time
 
 # Path to VS Code executable
 vscode_path = r"C:\Users\<YourUsername>\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-
+user = 'jabzz'
 def automate_vscode_commands():
     # Step 1: Launch Visual Studio Code
     app = Application(backend="uia").start(vscode_path)
@@ -63,7 +63,7 @@ def perform_main_steps():
         pg.hotkey('ctrl', 'a')  
         time.sleep(1)
         pg.press('backspace')  
-        pg.typewrite('aamzz')  
+        pg.typewrite(user)  
         time.sleep(1)
         pg.press('down')  
         time.sleep(1)
