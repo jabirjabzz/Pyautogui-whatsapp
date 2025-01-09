@@ -80,10 +80,8 @@ The script is designed to be triggered by an external event (e.g., a process com
 4.  If "Shut down" is detected, send a WhatsApp message and potentially perform a system shutdown (not implemented by default).
 5.  If "Save" is detected, send a WhatsApp message and execute the VS Code Git commands.
 
+## we can customize as your wish and contribute it what you explored!!
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-[MIT License](LICENSE)
